@@ -1,0 +1,23 @@
+{
+    "name": "Minix/api",
+    "description": "api",
+    "require-dev": {
+        "phpunit/phpunit": "5.2.*"
+    },
+    "authors": [
+        {
+            "name": "Ruslan Glick",
+            "email": "ruslang@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "mongodb/mongodb": "^1.0.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Minix\\": "src"
+        }
+    }
+
+}

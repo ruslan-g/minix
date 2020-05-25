@@ -1,0 +1,32 @@
+version: '3'
+
+services:
+
+    minix-perconadb:
+      image: percona:latest
+      restart: unless-stopped
+      container_name: minix-perconadb
+      command: mysqld --sql_mode="" --innodb_buffer_pool_size="1G" --datadir="/var/lib/mysql"
+      ports:
+        - "3309:3306"
+      environment:
+        MYSQL_ROOT_PASSWORD: "root"
+        MYSQL_DATABASE: minix
+        MYSQL_USER: root
+        MYSQL_PASSWORD: test
+
+    minix-app:
+        ports:
+            - "8080:80"
+        container_name: minix-app
+        image: flexbox/centos-php72
+        volumes:
+            - ./:/html
+            - ./dockerfiles/site.conf:/etc/nginx/conf.d/site.conf
+
+    minix-redis:
+        image: redis:alpine
+        restart: unless-stopped
+        container_name: minix-redis
+        ports:
+            - "6379"
